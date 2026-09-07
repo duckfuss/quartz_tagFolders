@@ -7,6 +7,8 @@ Quartz 5 component plugin that renders a collapsible folder tree from nested pag
 
 Install the plugin and add it to a Quartz layout position that accepts components:
 
+Run the Quartz commands from the website repository root, not from this plugin's checkout.
+
 ```yaml
 plugins:
   - source: github:duckfuss/quartz_tagFolders

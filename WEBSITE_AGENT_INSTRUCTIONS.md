@@ -10,13 +10,22 @@ that specifically.
 
 ## Steps
 
-1. Install the plugin from the website repository:
+1. Change to the Quartz website repository first. These commands must not be run from the
+   `quartz_tagFolders` plugin checkout. The current directory should contain the website's
+   `package.json` and `quartz.config.ts` or `quartz.config.yaml`:
+
+   ```bash
+   cd /path/to/your/quartz-website
+   npm install
+   ```
+
+2. Install the plugin from the website repository:
 
    ```bash
    npx quartz plugin add github:duckfuss/quartz_tagFolders
    ```
 
-2. Enable it in `quartz.config.yaml`:
+3. Enable it in `quartz.config.yaml`:
 
    ```yaml
    plugins:
@@ -28,7 +37,7 @@ that specifically.
          untaggedLabel: Untagged
    ```
 
-3. Open the site's layout file, usually `quartz.layout.ts`, and add the generated `TagExplorer`
+4. Open the site's layout file, usually `quartz.layout.ts`, and add the generated `TagExplorer`
    component to the desired sidebar array. Follow the site's existing plugin import convention. A
    typical layout entry is:
 
@@ -39,7 +48,7 @@ that specifically.
    Keep the site's existing responsive wrappers and native Explorer unless the requested design says
    otherwise.
 
-4. Use slash-delimited nested tags in Markdown frontmatter:
+5. Use slash-delimited nested tags in Markdown frontmatter:
 
    ```yaml
    tags:
@@ -50,9 +59,14 @@ that specifically.
    This renders folders such as `guide > typescript` and `projects > client`. A page appears under
    every tag path it declares. Tags may optionally begin with `#`.
 
-5. Run the website's normal validation command and build. Confirm that the component appears in the
-   intended layout position, folders can be collapsed, links navigate correctly, and SPA navigation
-   does not duplicate the tree.
+6. Run the website's normal validation command and build from the website repository root:
+
+   ```bash
+   npx quartz build --serve
+   ```
+
+   Confirm that the component appears in the intended layout position, folders can be collapsed,
+   links navigate correctly, and SPA navigation does not duplicate the tree.
 
 ## Constraints
 
