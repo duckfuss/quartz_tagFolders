@@ -3,9 +3,35 @@
   font-size: 0.95rem;
 }
 
-.tag-explorer h2 {
+.tag-explorer__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 0 0 0.65rem;
+  cursor: pointer;
   font-size: 1rem;
+  font-weight: 700;
+  list-style: none;
+}
+
+.tag-explorer__summary::-webkit-details-marker {
+  display: none;
+}
+
+.tag-explorer__summary::after {
+  content: "⌄";
+  font-size: 1.15rem;
+  line-height: 1;
+  transform: translateY(-0.1rem);
+  transition: transform 150ms ease;
+}
+
+.tag-explorer:not([open]) .tag-explorer__summary {
+  margin-bottom: 0;
+}
+
+.tag-explorer:not([open]) .tag-explorer__summary::after {
+  transform: rotate(-90deg) translateX(0.1rem);
 }
 
 .tag-explorer__list {

@@ -3731,7 +3731,7 @@ var ExampleEmitter = (userOptions) => {
 };
 
 // src/components/styles/tag-explorer.scss
-var tag_explorer_default = '@charset "UTF-8";\n.tag-explorer {\n  color: var(--dark, #242424);\n  font-size: 0.95rem;\n}\n\n.tag-explorer h2 {\n  margin: 0 0 0.65rem;\n  font-size: 1rem;\n}\n\n.tag-explorer__list {\n  margin: 0;\n  padding-left: 1rem;\n  list-style: none;\n}\n\n.tag-explorer__folder > .tag-explorer__list {\n  border-left: 1px solid color-mix(in srgb, currentColor 22%, transparent);\n}\n\n.tag-explorer__toggle {\n  padding: 0.2rem 0;\n  border: 0;\n  background: none;\n  color: inherit;\n  cursor: pointer;\n  font: inherit;\n  text-align: left;\n}\n\n.tag-explorer__toggle::before {\n  content: "\u25BE";\n  display: inline-block;\n  width: 1rem;\n}\n\n.tag-explorer__toggle[aria-expanded=false]::before {\n  content: "\u25B8";\n}\n\n.tag-explorer__page,\n.tag-explorer__empty {\n  padding: 0.2rem 0;\n}';
+var tag_explorer_default = '@charset "UTF-8";\n.tag-explorer {\n  color: var(--dark, #242424);\n  font-size: 0.95rem;\n}\n\n.tag-explorer__summary {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin: 0 0 0.65rem;\n  cursor: pointer;\n  font-size: 1rem;\n  font-weight: 700;\n  list-style: none;\n}\n\n.tag-explorer__summary::-webkit-details-marker {\n  display: none;\n}\n\n.tag-explorer__summary::after {\n  content: "\u2304";\n  font-size: 1.15rem;\n  line-height: 1;\n  transform: translateY(-0.1rem);\n  transition: transform 150ms ease;\n}\n\n.tag-explorer:not([open]) .tag-explorer__summary {\n  margin-bottom: 0;\n}\n\n.tag-explorer:not([open]) .tag-explorer__summary::after {\n  transform: rotate(-90deg) translateX(0.1rem);\n}\n\n.tag-explorer__list {\n  margin: 0;\n  padding-left: 1rem;\n  list-style: none;\n}\n\n.tag-explorer__folder > .tag-explorer__list {\n  border-left: 1px solid color-mix(in srgb, currentColor 22%, transparent);\n}\n\n.tag-explorer__toggle {\n  padding: 0.2rem 0;\n  border: 0;\n  background: none;\n  color: inherit;\n  cursor: pointer;\n  font: inherit;\n  text-align: left;\n}\n\n.tag-explorer__toggle::before {\n  content: "\u25BE";\n  display: inline-block;\n  width: 1rem;\n}\n\n.tag-explorer__toggle[aria-expanded=false]::before {\n  content: "\u25B8";\n}\n\n.tag-explorer__page,\n.tag-explorer__empty {\n  padding: 0.2rem 0;\n}';
 
 // src/components/scripts/tag-explorer.inline.ts
 var tag_explorer_inline_default = 'function u(n){return typeof n!="string"?[]:n.trim().replace(/^#/,"").split(/[\\\\/]/).map(e=>e.trim()).filter(Boolean)}function f(n){let e={name:"",pages:[],children:[]};for(let t of n){if(!t.slug)continue;let r={slug:t.slug,title:t.title||t.slug},l=Array.isArray(t.tags)?t.tags.map(u).filter(a=>a.length):[];for(let a of l){let s=e;for(let c of a){let i=s.children.find(p=>p.name===c);i||(i={name:c,pages:[],children:[]},s.children.push(i)),s=i}s.pages.push(r)}}let o=t=>{t.sort((r,l)=>r.name.localeCompare(l.name));for(let r of t)r.pages.sort((l,a)=>l.title.localeCompare(a.title)),o(r.children)};return o(e.children),e}function m(n){return Array.isArray(n)?n:Object.entries(n||{}).map(([e,o])=>({slug:e,...o}))}function h(n){let e=document.createElement("a");return e.href=`/${String(n.slug).replace(/^\\/+/,"")}`,e.textContent=n.title||n.slug,e}function g(n){let e=document.createElement("ul");e.className="tag-explorer__list";for(let o of n.children||[]){let t=document.createElement("li");t.className="tag-explorer__folder";let r=document.createElement("button");r.type="button",r.className="tag-explorer__toggle",r.setAttribute("aria-expanded","true"),r.textContent=o.name;let l=g(o);r.addEventListener("click",()=>{let a=r.getAttribute("aria-expanded")==="true";r.setAttribute("aria-expanded",String(!a)),l.hidden=a}),t.append(r,l),e.append(t)}for(let o of n.pages||[]){let t=document.createElement("li");t.className="tag-explorer__page",t.append(h(o)),e.append(t)}return e}async function d(){let n=document.querySelectorAll("[data-tag-explorer]");if(!n.length)return;let e;try{e=await fetchData}catch{e=null}for(let o of n){let t=o.querySelector("[data-tag-explorer-status]");if(!t)continue;let r=m(e).filter(a=>a&&a.slug),l=f(r);if(o.dataset.showUntagged==="true"){let a=r.filter(s=>!Array.isArray(s.tags)||!s.tags.some(c=>u(c).length));a.length&&l.children.push({name:o.dataset.untaggedLabel||"Untagged",pages:a,children:[]})}t.replaceWith(g(l))}}document.addEventListener("nav",d);document.addEventListener("render",d);d();\n';
@@ -3765,16 +3765,16 @@ var TagExplorer_default = ((options) => {
     className = "tag-explorer"
   } = options ?? {};
   const Component = (_props) => /* @__PURE__ */ u2(
-    "nav",
+    "details",
     {
       class: className,
       "data-tag-explorer": true,
       "data-show-untagged": showUntagged ? "true" : "false",
       "data-untagged-label": untaggedLabel,
-      "aria-label": title,
+      open: true,
       children: [
-        /* @__PURE__ */ u2("h2", { children: title }),
-        /* @__PURE__ */ u2("div", { class: "tag-explorer__status", "data-tag-explorer-status": true, children: "Loading tags..." })
+        /* @__PURE__ */ u2("summary", { class: "tag-explorer__summary", children: /* @__PURE__ */ u2("span", { children: title }) }),
+        /* @__PURE__ */ u2("nav", { "aria-label": title, children: /* @__PURE__ */ u2("div", { class: "tag-explorer__status", "data-tag-explorer-status": true, children: "Loading tags..." }) })
       ]
     }
   );

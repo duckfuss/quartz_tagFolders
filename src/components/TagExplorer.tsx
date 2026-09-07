@@ -23,18 +23,22 @@ export default ((options?: TagExplorerOptions) => {
   } = options ?? {};
 
   const Component: QuartzComponent = (_props: QuartzComponentProps) => (
-    <nav
+    <details
       class={className}
       data-tag-explorer
       data-show-untagged={showUntagged ? "true" : "false"}
       data-untagged-label={untaggedLabel}
-      aria-label={title}
+      open
     >
-      <h2>{title}</h2>
-      <div class="tag-explorer__status" data-tag-explorer-status>
-        Loading tags...
-      </div>
-    </nav>
+      <summary class="tag-explorer__summary">
+        <span>{title}</span>
+      </summary>
+      <nav aria-label={title}>
+        <div class="tag-explorer__status" data-tag-explorer-status>
+          Loading tags...
+        </div>
+      </nav>
+    </details>
   );
 
   Component.css = style;
