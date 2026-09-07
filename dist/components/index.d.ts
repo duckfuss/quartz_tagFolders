@@ -1,10 +1,11 @@
 import { QuartzComponent } from '@quartz-community/types';
 
-interface ExampleComponentOptions {
-    prefix?: string;
-    suffix?: string;
+interface TagExplorerOptions {
+    title?: string;
+    showUntagged?: boolean;
+    untaggedLabel?: string;
     className?: string;
 }
-declare const _default: (opts?: ExampleComponentOptions) => QuartzComponent;
+declare const _default: (options?: TagExplorerOptions) => QuartzComponent;
 
-export { _default as ExampleComponent, type ExampleComponentOptions };
+export { _default as TagExplorer, type TagExplorerOptions };

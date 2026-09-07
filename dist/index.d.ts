@@ -1,7 +1,24 @@
 import { QuartzTransformerPlugin, QuartzFilterPlugin, QuartzEmitterPlugin } from '@quartz-community/types';
 export { PageGenerator, PageMatcher, QuartzComponent, QuartzComponentConstructor, QuartzComponentProps, QuartzEmitterPlugin, QuartzFilterPlugin, QuartzPageTypePlugin, QuartzPageTypePluginInstance, QuartzTransformerPlugin, StringResource, VirtualPage } from '@quartz-community/types';
 import { ExampleTransformerOptions, ExampleFilterOptions, ExampleEmitterOptions } from './types.js';
-export { ExampleComponent, ExampleComponentOptions } from './components/index.js';
+export { TagExplorer, TagExplorerOptions } from './components/index.js';
+
+interface TagPage {
+	slug: string;
+	title: string;
+}
+interface TagTreeNode {
+	name: string;
+	path: string;
+	pages: TagPage[];
+	children: TagTreeNode[];
+}
+interface TagIndexEntry {
+	slug: string;
+	title?: string;
+	tags?: unknown;
+}
+declare const buildTagTree: (entries: TagIndexEntry[]) => TagTreeNode;
 
 /**
  * Example transformer showing remark/rehype usage and resource injection.
@@ -18,4 +35,4 @@ declare const ExampleFilter: QuartzFilterPlugin<Partial<ExampleFilterOptions>>;
  */
 declare const ExampleEmitter: QuartzEmitterPlugin<Partial<ExampleEmitterOptions>>;
 
-export { ExampleEmitter, ExampleEmitterOptions, ExampleFilter, ExampleFilterOptions, ExampleTransformer, ExampleTransformerOptions };
+export { buildTagTree, ExampleEmitter, ExampleEmitterOptions, ExampleFilter, ExampleFilterOptions, ExampleTransformer, ExampleTransformerOptions, TagExplorer, TagExplorerOptions, TagIndexEntry, TagPage, TagTreeNode };
