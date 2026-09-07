@@ -36,6 +36,12 @@
   transform: rotate(-45deg);
 }
 
+.tag-explorer__list {
+  margin: 0;
+  padding-left: 1rem;
+  list-style: none;
+}
+
 .tag-explorer > nav > .tag-explorer__list {
   max-height: 18rem;
   overflow-y: auto;
