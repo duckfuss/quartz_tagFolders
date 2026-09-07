@@ -19,10 +19,11 @@
 }
 
 .tag-explorer__summary::after {
-  content: "⌄";
-  font-size: 1.15rem;
-  line-height: 1;
-  transform: translateY(-0.1rem);
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 0.12rem solid currentColor;
+  border-bottom: 0.12rem solid currentColor;
+  transform: rotate(45deg) translate(-0.1rem, -0.1rem);
   transition: transform 150ms ease;
 }
 
@@ -31,13 +32,19 @@
 }
 
 .tag-explorer:not([open]) .tag-explorer__summary::after {
-  transform: rotate(-90deg) translateX(0.1rem);
+  transform: rotate(-45deg) translate(-0.1rem, -0.1rem);
 }
 
 .tag-explorer__list {
   margin: 0;
   padding-left: 1rem;
   list-style: none;
+}
+
+.tag-explorer > nav > .tag-explorer__list {
+  max-height: min(50vh, 30rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .tag-explorer__folder > .tag-explorer__list {

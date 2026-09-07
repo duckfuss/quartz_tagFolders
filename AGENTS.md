@@ -1,3 +1,4 @@
+
 # Quartz Community Plugin Template
 
 Provider-agnostic instruction file for AI coding assistants developing Quartz community plugins.

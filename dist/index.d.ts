@@ -3,23 +3,6 @@ export { PageGenerator, PageMatcher, QuartzComponent, QuartzComponentConstructor
 import { ExampleTransformerOptions, ExampleFilterOptions, ExampleEmitterOptions } from './types.js';
 export { TagExplorer, TagExplorerOptions } from './components/index.js';
 
-interface TagPage {
-	slug: string;
-	title: string;
-}
-interface TagTreeNode {
-	name: string;
-	path: string;
-	pages: TagPage[];
-	children: TagTreeNode[];
-}
-interface TagIndexEntry {
-	slug: string;
-	title?: string;
-	tags?: unknown;
-}
-declare const buildTagTree: (entries: TagIndexEntry[]) => TagTreeNode;
-
 /**
  * Example transformer showing remark/rehype usage and resource injection.
  */
@@ -35,4 +18,22 @@ declare const ExampleFilter: QuartzFilterPlugin<Partial<ExampleFilterOptions>>;
  */
 declare const ExampleEmitter: QuartzEmitterPlugin<Partial<ExampleEmitterOptions>>;
 
-export { buildTagTree, ExampleEmitter, ExampleEmitterOptions, ExampleFilter, ExampleFilterOptions, ExampleTransformer, ExampleTransformerOptions, TagExplorer, TagExplorerOptions, TagIndexEntry, TagPage, TagTreeNode };
+interface TagPage {
+    slug: string;
+    title: string;
+}
+interface TagTreeNode {
+    name: string;
+    path: string;
+    pages: TagPage[];
+    children: TagTreeNode[];
+}
+interface TagIndexEntry {
+    slug: string;
+    title?: string;
+    tags?: unknown;
+}
+/** Builds a folder-shaped tree from Quartz content index entries. */
+declare const buildTagTree: (entries: TagIndexEntry[]) => TagTreeNode;
+
+export { ExampleEmitter, ExampleEmitterOptions, ExampleFilter, ExampleFilterOptions, ExampleTransformer, ExampleTransformerOptions, type TagIndexEntry, type TagPage, type TagTreeNode, buildTagTree };

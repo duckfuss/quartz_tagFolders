@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
 function normalizeTag(tag) {
@@ -63,9 +64,10 @@ function tagExplorerNode(node) {
     const toggle = document.createElement("button");
     toggle.type = "button";
     toggle.className = "tag-explorer__toggle";
-    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-expanded", "false");
     toggle.textContent = child.name;
     const childList = tagExplorerNode(child);
+    childList.hidden = true;
     toggle.addEventListener("click", () => {
       const expanded = toggle.getAttribute("aria-expanded") === "true";
       toggle.setAttribute("aria-expanded", String(!expanded));
@@ -113,6 +115,13 @@ async function renderTagExplorers() {
   }
 }
 
-document.addEventListener("nav", renderTagExplorers);
-document.addEventListener("render", renderTagExplorers);
+const handleTagExplorerNav = () => renderTagExplorers();
+document.addEventListener("nav", handleTagExplorerNav);
+document.addEventListener("render", handleTagExplorerNav);
+if (typeof window !== "undefined" && window.addCleanup) {
+  window.addCleanup(() => {
+    document.removeEventListener("nav", handleTagExplorerNav);
+    document.removeEventListener("render", handleTagExplorerNav);
+  });
+}
 renderTagExplorers();
