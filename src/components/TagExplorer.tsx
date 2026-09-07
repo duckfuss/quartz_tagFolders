@@ -22,13 +22,13 @@ export default ((options?: TagExplorerOptions) => {
     className = "tag-explorer",
   } = options ?? {};
 
-  const Component: QuartzComponent = (_props: QuartzComponentProps) => (
+  const Component: QuartzComponent = ({ fileData }: QuartzComponentProps) => (
     <details
       class={className}
       data-tag-explorer
       data-show-untagged={showUntagged ? "true" : "false"}
       data-untagged-label={untaggedLabel}
-      open
+      open={!fileData.toc?.length}
     >
       <summary class="tag-explorer__summary">
         <span>{title}</span>
