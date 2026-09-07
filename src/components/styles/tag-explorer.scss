@@ -1,0 +1,44 @@
+.tag-explorer {
+  color: var(--dark, #242424);
+  font-size: 0.95rem;
+}
+
+.tag-explorer h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1rem;
+}
+
+.tag-explorer__list {
+  margin: 0;
+  padding-left: 1rem;
+  list-style: none;
+}
+
+.tag-explorer__folder > .tag-explorer__list {
+  border-left: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.tag-explorer__toggle {
+  padding: 0.2rem 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.tag-explorer__toggle::before {
+  content: "▾";
+  display: inline-block;
+  width: 1rem;
+}
+
+.tag-explorer__toggle[aria-expanded="false"]::before {
+  content: "▸";
+}
+
+.tag-explorer__page,
+.tag-explorer__empty {
+  padding: 0.2rem 0;
+}

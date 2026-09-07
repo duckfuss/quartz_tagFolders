@@ -1,7 +1,7 @@
 {
   "name": "@quartz-community/plugin-template",
   "version": "0.1.0",
-  "description": "Template repository for Quartz community plugins.",
+  "description": "Quartz 5 component that renders nested folders from page tags.",
   "type": "module",
   "license": "MIT",
   "author": "Quartz Community",
@@ -13,11 +13,8 @@
   "keywords": [
     "quartz",
     "quartz-plugin",
-    "plugin-template",
-    "remark",
-    "rehype",
-    "mdast",
-    "hast"
+    "quartz-tags",
+    "tag-explorer"
   ],
   "files": [
     "dist",
@@ -97,28 +94,33 @@
     "@changesets/cli": "^2.29.0"
   },
   "quartz": {
-    "name": "plugin-template",
-    "displayName": "Plugin Template",
-    "category": "transformer",
+    "name": "tag-explorer",
+    "displayName": "Tag Explorer",
+    "category": "component",
     "version": "1.0.0",
     "quartzVersion": ">=5.0.0",
     "dependencies": [],
     "defaultOrder": 50,
     "defaultEnabled": true,
-    "defaultOptions": {},
+    "defaultOptions": {
+      "title": "Tags",
+      "showUntagged": false,
+      "untaggedLabel": "Untagged"
+    },
     "optionSchema": {
-      "highlightToken": {
-        "type": "enum",
-        "values": [
-          "==",
-          "**",
-          "~~"
-        ]
+      "title": {
+        "type": "string"
+      },
+      "showUntagged": {
+        "type": "boolean"
+      },
+      "untaggedLabel": {
+        "type": "string"
       }
     },
     "components": {
-      "ExampleComponent": {
-        "displayName": "Example Component",
+      "TagExplorer": {
+        "displayName": "Tag Explorer",
         "defaultPosition": "right",
         "defaultPriority": 50
       }

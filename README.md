@@ -1,8 +1,25 @@
-# Quartz Community Plugin Template
+# Quartz Tag Explorer
 
-Production-ready template for building, testing, and publishing Quartz community plugins. It mirrors
-Quartz's native plugin patterns and uses a factory-function API similar to Astro integrations:
-plugins are created by functions that return objects with `name` and lifecycle hooks.
+Quartz 5 component plugin that renders a collapsible folder tree from nested page tags. A tag such as
+`guide/typescript` becomes `guide > typescript`, and pages are linked beneath every tag they use.
+
+## Usage
+
+Install the plugin and add it to a Quartz layout position that accepts components:
+
+```yaml
+plugins:
+  - source: github:your-username/quartz-tag-explorer
+    enabled: true
+    options:
+      title: Tags
+      showUntagged: false
+```
+
+Register `TagExplorer` in the desired layout slot. The component reads Quartz's generated
+`contentIndex.json` in the browser, so it stays current during SPA navigation.
+
+Options are `title`, `showUntagged`, `untaggedLabel`, and `className`.
 
 ## Highlights
 

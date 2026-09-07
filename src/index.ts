@@ -1,7 +1,8 @@
 export { ExampleTransformer } from "./transformer";
 export { ExampleFilter } from "./filter";
 export { ExampleEmitter } from "./emitter";
-export { default as ExampleComponent } from "./components/ExampleComponent";
+export { default as TagExplorer } from "./components/TagExplorer";
+export { buildTagTree } from "./tag-tree";
 
 export type {
   ExampleTransformerOptions,
@@ -9,7 +10,8 @@ export type {
   ExampleEmitterOptions,
 } from "./types";
 
-export type { ExampleComponentOptions } from "./components/ExampleComponent";
+export type { TagExplorerOptions } from "./components/TagExplorer";
+export type { TagIndexEntry, TagPage, TagTreeNode } from "./tag-tree";
 
 // Re-export shared types from @quartz-community/types
 export type {
