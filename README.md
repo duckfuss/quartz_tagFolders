@@ -9,7 +9,7 @@ Install the plugin and add it to a Quartz layout position that accepts component
 
 ```yaml
 plugins:
-  - source: github:your-username/quartz-tag-explorer
+  - source: github:duckfuss/quartz_tagFolders
     enabled: true
     options:
       title: Tags
@@ -31,6 +31,11 @@ Options are `title`, `showUntagged`, `untaggedLabel`, and `className`.
 - ✅ Linting/formatting with ESLint + Prettier
 - ✅ CI workflow for checks and npm publishing
 - ✅ Demonstrates CSS/JS resource injection and remark/rehype usage
+
+## Website agent instructions
+
+See [WEBSITE_AGENT_INSTRUCTIONS.md](WEBSITE_AGENT_INSTRUCTIONS.md) for a copy-paste brief for an
+AI agent integrating this plugin into a Quartz website.
 
 ## Getting started
 
@@ -55,17 +60,18 @@ The template is configured to bundle all dependencies by default via `noExternal
 Install your plugin into a Quartz v5 site:
 
 ```bash
-npx quartz plugin add github:quartz-community/plugin-template
+npx quartz plugin add github:duckfuss/quartz_tagFolders
 ```
 
 Then register it in `quartz.config.yaml`:
 
 ```yaml
 plugins:
-  - source: github:quartz-community/plugin-template
+  - source: github:duckfuss/quartz_tagFolders
     enabled: true
     options:
-      highlightToken: "=="
+      title: "Tags"
+      showUntagged: false
 ```
 
 If you need to use the plugin in `quartz.ts` for advanced overrides:
